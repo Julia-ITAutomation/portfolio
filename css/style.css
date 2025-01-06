@@ -1,0 +1,241 @@
+/* Основной стиль страницы */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #D9D9D9;
+    color: black;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+/* Стили для навигационного меню */
+nav {
+    background-color: #737373; /* Цвет фона меню */
+    padding: 10px 0; /* Отступы сверху и снизу */
+    position: sticky; /* Закрепляем меню наверху */
+    top: 0;
+    z-index: 1000; /* Чтобы меню оставалось поверх других элементов */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень под меню */
+}
+
+.navigation-menu {
+    list-style: none; /* Убираем маркеры списка */
+    display: flex; /* Располагаем элементы горизонтально */
+    justify-content: center; /* Центрируем меню */
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-menu li {
+    margin: 0 15px; /* Отступы между пунктами меню */
+}
+
+.navigation-menu a {
+    text-decoration: none; /* Убираем подчеркивание текста */
+    color: white; /* Цвет текста */
+    font-size: 1.2rem; /* Размер шрифта */
+    transition: color 0.3s; /* Анимация при наведении */
+}
+
+.navigation-menu a:hover {
+    color: #f4f4f4; /* Светлее при наведении */
+}
+
+/* Контейнер для содержимого */
+.container {
+    max-width: 1400px; /* Максимальная ширина страницы */
+    margin: 0 auto; /* Центрирование содержимого */
+    padding: 0 40px; /* Горизонтальные отступы */
+}
+
+/* Секции */
+section {
+    scroll-margin-top: 80px; /* Отступ сверху при прокрутке к секции */
+    margin-bottom: 50px; /* Отступ между секциями */
+}
+
+/* Выделение текста "Project Manager" */
+.highlight {
+    font-weight: bold;
+    color: #000000;
+    background-color: #f4f4f4;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+
+/* Стили для секции проектов */
+#projects {
+    padding: 50px 20px;
+    margin-bottom: 50px; /* Добавляем отступ снизу для раздела "Portfolio" */
+}
+
+h2 {
+    color: #2b73a3;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+/* Контейнер для всех карточек проектов */
+.project-container {
+    display: flex; /* Flexbox для размещения карточек в одну строку */
+    justify-content: space-between; /* Равномерное распределение пространства между карточками */
+    gap: 10px; /* Уменьшено расстояние между карточками */
+    overflow-x: auto; /* Добавляет прокрутку, если контент выходит за пределы экрана */
+    padding: 20px; /* Отступ внутри контейнера */
+}
+
+/* Карточка проекта */
+.project-card {
+    flex: 0 0 calc(33.333% - 20px); /* Каждая карточка занимает 1/3 строки с учетом отступов */
+    max-width: 400px; /* Максимальная ширина карточки */
+    perspective: 1000px; /* Создаем пространство для 3D эффекта */
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Контейнер для изображения */
+.project-image-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+/* Стили для изображений */
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+    transform: rotateY(0deg); /* Убираем зеркальное отображение */
+}
+
+/* Описание на обратной стороне карточки */
+.project-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto; /* Добавляем прокрутку, если текст длинный */
+    opacity: 0;
+    transform: rotateY(180deg);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    text-align: left;
+    font-size: 0.9rem;
+}
+/* Жирный текст */
+.project-back strong {
+    font-weight: bold;
+    color: #333; /* Темный цвет для акцента */
+}
+
+/* Списки */
+.project-back ul {
+    margin: 10px 0;
+    padding-left: 20px; /* Отступ для маркированных списков */
+}
+
+.project-back li {
+    margin-bottom: 5px;
+}
+/* Когда карточка перевернута */
+.project-card.flipped .project-image-container {
+    transform: rotateY(180deg); /* Переворачиваем картинку */
+}
+
+.project-card.flipped .project-back {
+    opacity: 1; /* Появляется описание */
+    transform: rotateY(180deg); /* Возвращаем описание в исходное положение */
+}
+
+/* Кнопка на карточке */
+.project-btn {
+    background-color: #737373;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Эффект на кнопку при наведении */
+.project-btn:hover {
+    background-color: #585858;
+}
+
+/* Добавление отступа после секции Portfolio */
+#contact {
+    margin-top: 50px; /* Добавляем отступ сверху для следующего блока */
+    padding: 50px 20px;
+    margin-bottom: 50px; /* Добавляем отступ снизу для блока с формой */
+}
+
+/* Оформление для формы обратной связи */
+#contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contact form label {
+    font-size: 1rem;
+    color: #737373;
+    margin-bottom: 5px;
+    text-align: left;
+    width: 80%;
+}
+
+#contact form input,
+#contact form textarea {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+#contact form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+#contact form input[type="submit"] {
+    background-color: #737373;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#contact form input[type="submit"]:hover {
+    background-color: #585858;
+}
